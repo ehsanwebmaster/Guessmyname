@@ -4,7 +4,7 @@ const secretNumber = Math.trunc(Math.random() * 20 + 1);
 // Get Score number
 let scoreNumber = document.querySelector('.score').textContent;
 // Add number to Number area
-document.querySelector('.number').textContent = secretNumber;
+document.querySelector('.number').textContent;
 // input
 document.querySelector('.check').addEventListener('click', () => {
   const guessValue = Number(document.querySelector('.guess').value);
