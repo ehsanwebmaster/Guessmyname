@@ -1,8 +1,11 @@
 'use strict';
+// High score
+let highScore = 0;
 // Create random number
-const secretNumber = Math.trunc(Math.random() * 20 + 1);
+let secretNumber = Math.trunc(Math.random() * 20 + 1);
 // Get Score number
-let scoreNumber = document.querySelector('.score').textContent;
+let scoreNumber = 20;
+console.log(scoreNumber);
 // Add number to Number area
 document.querySelector('.number').textContent;
 // input
@@ -11,12 +14,19 @@ document.querySelector('.check').addEventListener('click', () => {
   if (!guessValue) {
     document.querySelector('.message').textContent = '⛔ No number! ⛔';
   } else if (guessValue === secretNumber) {
-    // when players win 
+    // when players win
     document.querySelector('.message').textContent = '😍 Correct Number!';
     document.body.style.backgroundColor = '#60b347';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem';
-    // when players win 
+    // calculateHighScore
+    if (scoreNumber > highScore) {
+      highScore = scoreNumber;
+      document.querySelector('.highscore').textContent = highScore;
+    }
+    // calculateHighScore
+
+    // when players win
   } else if (guessValue > secretNumber) {
     document.querySelector('.message').textContent = '📈 Too high!';
     if (scoreNumber > 1) {
@@ -36,4 +46,15 @@ document.querySelector('.check').addEventListener('click', () => {
       document.querySelector('.score').textContent = 0;
     }
   }
+});
+// Reset again
+document.querySelector('.again').addEventListener('click', () => {
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.number').textContent = '?';
+  scoreNumber = 20;
+  document.querySelector('.score').textContent = scoreNumber;
+  document.querySelector('.guess').value = '';
+  document.body.style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
 });
